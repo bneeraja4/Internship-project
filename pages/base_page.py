@@ -12,21 +12,15 @@ class Page:
     def click(self, *locator):
         self.driver.find_element(*locator).click()
 
-    def input_text(self, text, *locator):
+    def input_text(self, locator, text):
         self.driver.find_element(*locator).send_keys(text)
 
     def verify_text(self, expected_text, *locator):
         actual_text = self.driver.find_element(*locator).text
 
-
-    def wait_for_element_click(self, *locator):
-        self.wait.until(
-            EC.element_to_be_clickable(locator),
-            message=f'Element by {locator} not clickable'
-        ).click()
-
-    def wait_for_element(self, *locator):
-        self.wait.until(
-            EC.visibility_of_element_located(locator),
-            message=f'Element by {locator} not visible'
-        )
+    def find_element_value(self, locator):
+        value = self.find_element(*locator).get_attribute("value")
+        print(value)
+        return value
+    def is_element_enabled(self, locator):
+        return self.find_element(*locator).is_enabled()

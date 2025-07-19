@@ -1,3 +1,4 @@
+from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -11,4 +12,5 @@ class SettingsPage(Page):
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.SETTINGS_BTN)).click()
 
     def click_add_project(self):
+        sleep(3)
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.ADD_PROJECT_BTN)).click()

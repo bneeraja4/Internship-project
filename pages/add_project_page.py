@@ -1,3 +1,4 @@
+from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -13,6 +14,7 @@ class AddProjectPage(Page):
     SEND_BTN = (By.CSS_SELECTOR, "[class='purchase-access w-button']")
 
     def is_loaded(self):
+        sleep(5)
         return WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(self.TITLE))
 
     def fill_form(self, name="", company="", role="", country="", phone=""):

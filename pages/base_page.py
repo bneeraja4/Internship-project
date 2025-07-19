@@ -7,7 +7,9 @@ class Page:
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 15)
     def find_element(self, *locator):
-        return self.driver.find_element(*locator)
+        return WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located(locator))
+        #return self.driver.find_element(*locator)
 
     def click(self, *locator):
         self.driver.find_element(*locator).click()

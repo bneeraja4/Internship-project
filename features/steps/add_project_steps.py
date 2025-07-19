@@ -7,7 +7,7 @@ def open_main(context):
 
 @when('Log in to the page')
 def login(context):
-    context.app.login_page.login("username", "**********")
+    context.app.login_page.login("bneeraja4@gmail.com", "Aparna@704")
 
 @when('Click on the settings option')
 def click_settings(context):

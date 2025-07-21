@@ -1,18 +1,33 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from app.application import Application
-def browser_init(context):
+def browser_init(context, scenario_name):
     """
     :param context: Behave context
     """
     #context.driver = webdriver.Chrome()
     #context.browser = webdriver.Safari()
-    context.driver = webdriver.Firefox()
+    #context.driver = webdriver.Firefox()
 
     ### HEADLESS MODE ####
     # options = webdriver.ChromeOptions()
     # options.add_argument('headless')
     # context.driver = webdriver.Chrome(options=options)
+
+    ### BROWSERSTACK ###
+    bs_user ='bneeraja_dc1OHz'
+    bs_key = 'pn8bctDxP7ynceh5icmi'
+    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    options = Options()
+    bstack_options = {
+         "os" : "Windows",
+         "osVersion" : "11",
+         'browserName': 'Chrome',
+         'sessionName': scenario_name,
+     }
+    options.set_capability('bstack:options', bstack_options)
+    context.driver = webdriver.Remote(command_executor=url, options=options)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
@@ -21,7 +36,7 @@ def browser_init(context):
 
 def before_scenario(context, scenario):
     print('\nStarted scenario: ', scenario.name)
-    browser_init(context)
+    browser_init(context, scenario.name)
 
 
 def before_step(context, step):

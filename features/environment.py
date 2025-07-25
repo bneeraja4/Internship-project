@@ -6,7 +6,7 @@ def browser_init(context, scenario_name):
     """
     :param context: Behave context
     """
-    #context.driver = webdriver.Chrome()
+    context.driver = webdriver.Chrome()
     #context.browser = webdriver.Safari()
     #context.driver = webdriver.Firefox()
 
@@ -16,18 +16,18 @@ def browser_init(context, scenario_name):
     # context.driver = webdriver.Chrome(options=options)
 
     ### BROWSERSTACK ###
-    bs_user ='bneeraja_dc1OHz'
-    bs_key = 'pn8bctDxP7ynceh5icmi'
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-    options = Options()
-    bstack_options = {
-         "os" : "Windows",
-         "osVersion" : "11",
-         'browserName': 'Chrome',
-         'sessionName': scenario_name,
-     }
-    options.set_capability('bstack:options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url, options=options)
+    # bs_user ='bneeraja_dc1OHz'
+    # bs_key = 'pn8bctDxP7ynceh5icmi'
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    # options = Options()
+    # bstack_options = {
+    #      "os" : "Windows",
+    #      "osVersion" : "11",
+    #      'browserName': 'Chrome',
+    #      'sessionName': scenario_name,
+    #  }
+    # options.set_capability('bstack:options', bstack_options)
+    # context.driver = webdriver.Remote(command_executor=url, options=options)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)

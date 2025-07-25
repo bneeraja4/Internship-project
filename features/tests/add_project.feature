@@ -1,6 +1,7 @@
 
 Feature: Add a project through settings
 
+  @smoke
   Scenario: User can add a project through the settings
       Given Open the main page
       When Log in to the page

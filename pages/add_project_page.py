@@ -25,6 +25,7 @@ class AddProjectPage(Page):
         self.input_text(self.PHONE_INPUT, phone)
 
     def verify_form_values(self, name, company, role, country, phone):
+        sleep(2)
         assert (self.find_element_value(self.NAME_INPUT).strip() == name and
                 self.find_element_value(self.COMPANY_NAME_INPUT).strip() == company and
                 self.find_element_value(self.ROLE_INPUT).strip() == role and
